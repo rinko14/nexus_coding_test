@@ -84,7 +84,7 @@ def postprocess(path):
 
     CleanText = []  #各ラインごとに正規表現制御により整えた分を格納するための空リスト
     for line in Text:
-        noplus = re.sub('\+', '', line)  #+記号を削除
+        noplus = re.sub('\+', '', line)  #プラス記号を削除
         nodots = re.sub('.(\.\.+)', '', noplus)  #連続するドットを削除
         comma = re.sub('@{2,3}', '', nodots)  #連続する@を削除
         new_line = re.sub('\n', '', comma)  #改行記号を削除
