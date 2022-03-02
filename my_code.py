@@ -69,7 +69,7 @@ def load_sr_model(model_name, scale, url):
 
 
 def preprocess(img):
-    #sr = load_sr_model("lapsrn", 4, "https://github.com/fannymonori/TF-LapSRN/raw/master/export#LapSRN_x4.pb")
+    #sr = load_sr_model("lapsrn", 4, "https://github.com/fannymonori/TF-LapSRN/raw/master/export#LapSRN_x4.pb")  #超解像
     #img_sr = sr.upsample(image)
     arg = get_degree(img)  #文字列が水平からどのくらい傾いているか
     rotate_img = ndimage.rotate(img, arg)  #傾いている分だけ回転させる
@@ -127,7 +127,8 @@ def extract_text(input, output, verbose):
             img_gray = cv2.cvtColor(img_array, cv2.COLOR_RGB2GRAY)  #グレースケールに変換
             pil_image = preprocess(img_gray)  #前処理
             logger.info("complete preprocess")
-            text = tool.image_to_string(pil_image, lang="eng", builder=builder)
+            text = tool.image_to_string(pil_image, lang="eng",
+                                        builder=builder)  #テキスト抽出
             ls_text.append(text)
             text = ','.join(ls_text)
             logger.info("complete extract text from scanned image")
@@ -135,7 +136,8 @@ def extract_text(input, output, verbose):
         image = cv2.imread(img, 0)  #グレースケールに変換
         pil_image = preprocess(image)
         logger.info("complete preprocess")
-        text = tool.image_to_string(pil_image, lang="eng", builder=builder)
+        text = tool.image_to_string(pil_image, lang="eng",
+                                    builder=builder)  #テキスト抽出
         logger.info("complete extract text from scanned image")
 
     OUTPUT_DIR = "/home/eikai/imageRecognition/nexus_code/outputs/"
@@ -151,8 +153,3 @@ def extract_text(input, output, verbose):
 
 if __name__ == '__main__':
     extract_text()
-
-#インストールしたTesseract-OCRのパスを環境変数「PATH」へ追記する。
-#OS自体に設定してあれば以下の2行は不要
-#path='C:\\Program Files\\Tesseract-OCR'
-#os.environ['PATH'] = os.environ['PATH'] + path
