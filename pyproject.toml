@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "nexus_code"
+version = "0.1.0"
+description = ""
+authors = ["rinko14 <6327eikai@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = ">=3.8,<3.11"
+click = "^8.0.4"
+opencv-python = "^4.5.5"
+pdf2image = "^1.16.0"
+pyocr = "^0.8.1"
+opencv-contrib-python = "^4.5.5"
+isort = "^5.10.1"
+yapf = "^0.32.0"
+toml = "^0.10.2"
+scipy = "^1.8.0"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
